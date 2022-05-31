@@ -7,10 +7,8 @@ import RegistrationPage from './pages/RegistrationPage/RegistrationPage';
 import Payment from './pages/Payment/Payment';
 import StartContestPage from './pages/StartContestPage/StartContestPage';
 import Dashboard from './pages/Dashboard/Dashboard';
-import PrivateHoc from './components/PrivateHoc/PrivateHoc';
 import NotFound from './components/NotFound/NotFound';
 import Home from './pages/Home/Home';
-import OnlyNotAuthorizedUserHoc from './components/OnlyNotAuthorizedUserHoc/OnlyNotAuthorizedUserHoc';
 import ContestPage from './pages/ContestPage/ContestPage';
 import UserProfile from './pages/UserProfile/UserProfile';
 import 'react-toastify/dist/ReactToastify.css';
@@ -18,6 +16,8 @@ import ContestCreationPage from './pages/ContestCreation/ContestCreationPage';
 import CONSTANTS from './constants';
 import browserHistory from './browserHistory';
 import ChatContainer from './components/Chat/ChatComponents/ChatContainer/ChatContainer';
+import PrivateRoute from 'components/Routes/PrivateRoute/PrivateRoute';
+import PublicOnlyRoute from 'components/Routes/PublicOnlyRoute/PublicOnlyRoute';
 
 class App extends Component {
   render () {
@@ -36,53 +36,45 @@ class App extends Component {
         />
         <Switch>
           <Route exact path='/' component={Home} />
-          <Route
-            exact
-            path='/login'
-            component={OnlyNotAuthorizedUserHoc(LoginPage)}
-          />
-          <Route
+          <PublicOnlyRoute exact path='/login' component={LoginPage} />
+          <PublicOnlyRoute
             exact
             path='/registration'
-            component={OnlyNotAuthorizedUserHoc(RegistrationPage)}
+            component={RegistrationPage}
           />
-          <Route exact path='/payment' component={PrivateHoc(Payment)} />
-          <Route
+          <PrivateRoute exact path='/payment' component={Payment} />
+          <PrivateRoute
+            roles={[CONSTANTS.CUSTOMER]}
             exact
             path='/startContest'
-            component={PrivateHoc(StartContestPage)}
+            component={StartContestPage}
           />
-          <Route
+          <PrivateRoute exact path='/startContest/nameContest'>
+            <ContestCreationPage
+              contestType={CONSTANTS.NAME_CONTEST}
+              title='Company Name'
+            />
+          </PrivateRoute>
+          <PrivateRoute exact path='/startContest/taglineContest'>
+            <ContestCreationPage
+              title='TAGLINE'
+              contestType={CONSTANTS.TAGLINE_CONTEST}
+            />
+          </PrivateRoute>
+          <PrivateRoute exact path='/startContest/logoContest'>
+            <ContestCreationPage
+              title='LOGO'
+              contestType={CONSTANTS.LOGO_CONTEST}
+            />
+          </PrivateRoute>
+          <PrivateRoute
+            roles={[CONSTANTS.CUSTOMER, CONSTANTS.CREATOR]}
             exact
-            path='/startContest/nameContest'
-            component={PrivateHoc(ContestCreationPage, {
-              contestType: CONSTANTS.NAME_CONTEST,
-              title: 'Company Name',
-            })}
+            path='/dashboard'
+            component={Dashboard}
           />
-          <Route
-            exact
-            path='/startContest/taglineContest'
-            component={PrivateHoc(ContestCreationPage, {
-              contestType: CONSTANTS.TAGLINE_CONTEST,
-              title: 'TAGLINE',
-            })}
-          />
-          <Route
-            exact
-            path='/startContest/logoContest'
-            component={PrivateHoc(ContestCreationPage, {
-              contestType: CONSTANTS.LOGO_CONTEST,
-              title: 'LOGO',
-            })}
-          />
-          <Route exact path='/dashboard' component={PrivateHoc(Dashboard)} />
-          <Route
-            exact
-            path='/contest/:id'
-            component={PrivateHoc(ContestPage)}
-          />
-          <Route exact path='/account' component={PrivateHoc(UserProfile)} />
+          <PrivateRoute exact path='/contest/:id' component={ContestPage} />
+          <PrivateRoute exact path='/account' component={UserProfile} />
           <Route component={NotFound} />
         </Switch>
         <ChatContainer />
