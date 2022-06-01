@@ -1,0 +1,38 @@
+@import 'common/styles/templates'
+
+.agencyListItem
+  width: 30%
+
+.agencyArticle
+  text-align: center
+
+.imgContainer
+  position: relative
+  cursor: pointer
+  $size: 3rem
+  width: $size
+  height: $size
+  margin: 0 auto
+  border-radius: 50%
+  margin-bottom: 30px
+  i
+    position: absolute
+    top: $size / 2
+    left: 0
+    right: 0
+
+.agencyHeading
+  font-weight: 500
+  font-size: 1.25rem
+  line-height: 1.2
+  margin-bottom: 10px
+
+.agencyText
+  font-size: 14px
+  font-weight: 400
+  line-height: 1.7
+  color: #77838f
+
+.agencyLink
+  @extend %linkReset
+  text-decoration: underline dotted

@@ -1,0 +1,26 @@
+[
+  {
+    "title": "Managed Contests",
+    "text": "Combine the power of crowdsourcing with the rich experience of our branding consultants. Get a complete agency-level experience.",
+    "linkAddress": "#",
+    "color": "#de4437",
+    "background": "#de44374d",
+    "iconClasses": "fab fa-whmcs fa-2x"
+  },
+  {
+    "title": "Audience Testing",
+    "text": "Get unbiased feedback from real people to choose your most important brand elements with confidence!",
+    "linkAddress": "#",
+    "color": "#00c9a7",
+    "background": "#00c9a74d",
+    "iconClasses": "fa fa-users fa-2x"
+  },
+  {
+    "title": "Trademark Support",
+    "text": "Work with our team of experienced licensed trademark attorneys to protect your name, tagline, and logo with the USPTO.",
+    "linkAddress": "#",
+    "color": "#377dff",
+    "background": "#377dff4d",
+    "iconClasses": "fa fa-trademark fa-2x"
+  }
+]
