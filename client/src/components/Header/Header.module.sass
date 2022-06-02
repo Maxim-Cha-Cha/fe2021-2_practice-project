@@ -133,6 +133,7 @@
     margin-bottom: 13px
 
     .userButtonsContainer
+      position: relative
       margin-left: 100px
       align-items: center
       justify-content: center
@@ -145,6 +146,11 @@
         margin-left: 20px
       @media(max-width: 320px)
         margin-left: 0
+      &:hover
+        .menuPopup
+          display: block
+          position: absolute
+          top: 100%
 
       .emailIcon
         padding: 0 15px
@@ -156,12 +162,6 @@
         align-items: center
         padding: 0 15px
         border-right: 1px solid #ebebeb
-
-        &:hover
-          ul
-            display: block
-            position: absolute
-            top: 45px
 
         ul
           border: 1px solid #eee

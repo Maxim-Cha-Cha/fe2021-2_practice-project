@@ -45,7 +45,7 @@ class Header extends React.Component {
               src={`${CONSTANTS.STATIC_IMAGES_PATH}menu-down.png`}
               alt='menu'
             />
-            <ul>
+            <ul className={styles.menuPopup}>
               <li>
                 <Link to='/dashboard' style={{ textDecoration: 'none' }}>
                   <span>View Dashboard</span>
